@@ -1,9 +1,6 @@
-
-try :
-     import pika
-     import ast
-except Exception as e :
-     print("Some module is missing {}".format_map(e))
+import pika
+import ast
+from  ChatlogManager import Chatlog
 
 class Receive(object):
     def __init__(self, callbackf , binding_key, exchange):
@@ -40,12 +37,15 @@ def callback(ch, method, properties, body ):
     
     
     try :
+        clm = Chatlog()
         obj = ast.literal_eval(body.decode('utf-8'))
+        clm.save_message(obj);
         print(obj)
-        print("[o] recived and uploaded  %r"%body)
+
+        print("[o] recived and saved  %r"%body)
     except Exception as e:
         print('Some problem has occured ')
-        print(e)
+        print(e) 
     
     
 if __name__ == '__main__':

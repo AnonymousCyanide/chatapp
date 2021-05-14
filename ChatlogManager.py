@@ -18,6 +18,7 @@ class Chatlog(object):
             
             writer_object.writerow(message)
             cl.close()
+    
     def read_chat(self):
         with open(self._file_name,'r') as cl:
             reader_object = DictReader(cl)
@@ -30,10 +31,7 @@ class Chatlog(object):
             else:
                 for row in msg_list:
                     print(row)
-    def refresh_chat(self):
-        with open(self._file_name,'r'):
-            pass
-
+    
         
         
 if (__name__ == '__main__'):
